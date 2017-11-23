@@ -1,3 +1,4 @@
+from flask import Flask, request, abort, json
 import os
 import time
 from slackclient import SlackClient
@@ -13,6 +14,11 @@ EXAMPLE_COMMAND = "do"
 # instantiate Slack & Twilio clients
 slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
 
+app = Flask(__name__)
+
+@app.route("/info", methods=['GET'])
+def server_info():
+    return "woof woof"
 
 def handle_command(command, channel):
     """
@@ -52,6 +58,8 @@ def parse_slack_output(slack_rtm_output):
 
 
 if __name__ == "__main__":
+    app.run(debug=True, use_reloader=False)
+
     READ_WEBSOCKET_DELAY = 1 # 1 second delay between reading from firehose
     if slack_client.rtm_connect():
         print("Bot is connected and running!")
