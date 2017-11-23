@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route("/info", methods=['GET'])
 def server_info():
-    return "woof woof"
+    return "woof woof :)"
 
 def handle_command(command, channel):
     """
@@ -51,7 +51,7 @@ def parse_slack_output(slack_rtm_output):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, use_reloader=False)
+    app.run()
 
     READ_WEBSOCKET_DELAY = 1 # 1 second delay between reading from firehose
     if slack_client.rtm_connect():
