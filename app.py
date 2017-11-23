@@ -51,8 +51,6 @@ def parse_slack_output(slack_rtm_output):
 
 
 if __name__ == "__main__":
-    app.run()
-
     READ_WEBSOCKET_DELAY = 1 # 1 second delay between reading from firehose
     if slack_client.rtm_connect():
         print("Bot is connected and running!")
@@ -63,3 +61,5 @@ if __name__ == "__main__":
             time.sleep(READ_WEBSOCKET_DELAY)
     else:
         print("Connection failed. Invalid Slack token or bot ID?")
+
+    app.run()
